@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { findClosestStation } from "../api/stations";
+import { findClosestStation } from "./stations/stations";
 
 const options = {
   enableHighAccuracy: true,

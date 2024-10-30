@@ -1,7 +1,8 @@
-import calculateDistance from "../app/util/distance";
+import calculateDistance from "../util/distance";
 
 export default async function fetchStations(): Promise<StationInfo[]> {
   try {
+    console.log(process.env.YOUBIKE_API);
     const response = await fetch(process.env.YOUBIKE_API);
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -17,7 +18,7 @@ export const findClosestStation = async (lat: number, lng: number) => {
   let closestStation = null;
   let smallestDistance = Number.MAX_VALUE;
 
-  const stationList = await fetchStations();
+  const stationList: StationInfo[] = await (await fetch("/stations")).json();
 
   stationList.forEach((station) => {
     const stationLat = parseFloat(station.lat);
